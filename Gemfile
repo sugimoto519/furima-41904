@@ -75,3 +75,5 @@ end
 group :development, :test do
   gem "mysql2", "~> 0.5"
 end
+
+gem 'devise'
