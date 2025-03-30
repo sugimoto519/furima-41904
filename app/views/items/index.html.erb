@@ -132,7 +132,7 @@
       <li class='list'>
         <%= link_to "#" do %>
         <div class='item-img-content'>
-          <%= image_tag item.image, class: "item-img" %>
+          <%= image_tag item.image, class: "item-img", alt: "Sample image" %>
 
           <%# unless 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
@@ -160,7 +160,7 @@
       <% if @items.empty? %>
       <li class='list'>
         <%= link_to '#' do %>
-        <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+        <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img", alt: "Sample image" %>
         <div class='item-info'>
           <h3 class='item-name'>
             商品を出品してね！
