@@ -1,4 +1,6 @@
 class PurchaseRecordsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @item = Item.find(params[:item_id])
