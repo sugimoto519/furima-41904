@@ -5,7 +5,6 @@ RSpec.describe PurchaseRecordDeliveryAddress, type: :model do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item)
     @purchase_record_delivery_address = FactoryBot.build(:purchase_record_delivery_address, user_id: @user.id, item_id: @item.id)
-    @purchase_record_delivery_address.valid?
   end
   describe '配送先住所登録' do
 
@@ -60,6 +59,11 @@ RSpec.describe PurchaseRecordDeliveryAddress, type: :model do
         @purchase_record_delivery_address.phone_number = '090123456789'
         @purchase_record_delivery_address.valid?
         expect(@purchase_record_delivery_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
+      it 'tokenが空では保存できない' do
+        @purchase_record_delivery_address.token = nil
+        @purchase_record_delivery_address.valid?
+        expect(@purchase_record_delivery_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
