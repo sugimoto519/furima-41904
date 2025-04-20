@@ -1,9 +1,10 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!
-  
+  before_action :set_item, only: :new
+  before_action :move_to_index, only: :new
+
   def new
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @item = Item.find(params[:item_id])
     @purchase_record_delivery_address = PurchaseRecordDeliveryAddress.new
   end
 
@@ -34,5 +35,15 @@ class PurchaseRecordsController < ApplicationController
       card: purchase_record_delivery_address_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_index
+    if current_user.id == @item.user_id || current_user.id && @item.purchase_record.present?
+      redirect_to root_path
+    end
   end
 end
