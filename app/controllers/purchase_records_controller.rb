@@ -1,7 +1,7 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, only: :new
-  before_action :move_to_index, only: :new
+  before_action :set_item, only: [:new, :create]
+  before_action :move_to_index, only: [:new, :create]
 
   def new
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
@@ -10,7 +10,6 @@ class PurchaseRecordsController < ApplicationController
 
   def create
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    @item = Item.find(params[:item_id])
     @purchase_record_delivery_address = PurchaseRecordDeliveryAddress.new(purchase_record_delivery_address_params)
     if @purchase_record_delivery_address.valid?
       pay_item
@@ -31,6 +30,7 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def pay_item
+
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item[:price],
