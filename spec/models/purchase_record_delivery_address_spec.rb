@@ -11,6 +11,11 @@ RSpec.describe PurchaseRecordDeliveryAddress, type: :model do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@purchase_record_delivery_address).to be_valid
       end
+      it '建物名が空でも保存できる' do
+        @purchase_record_delivery_address.building_name = ''
+        @purchase_record_delivery_address.valid?
+        expect(@purchase_record_delivery_address).to be_valid
+      end
     end
 
     context '内容に問題がある場合' do
@@ -63,6 +68,21 @@ RSpec.describe PurchaseRecordDeliveryAddress, type: :model do
         @purchase_record_delivery_address.token = nil
         @purchase_record_delivery_address.valid?
         expect(@purchase_record_delivery_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it '電話番号に半角数字以外が含まれている場合は購入できない' do
+        @purchase_record_delivery_address.phone_number = '０９０１２３４５６７８'
+        @purchase_record_delivery_address.valid?
+        expect(@purchase_record_delivery_address.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'userが紐付いていなければ購入できない' do
+        @purchase_record_delivery_address.user_id = nil
+        @purchase_record_delivery_address.valid?
+        expect(@purchase_record_delivery_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていなければ購入できない' do
+        @purchase_record_delivery_address.item_id = nil
+        @purchase_record_delivery_address.valid?
+        expect(@purchase_record_delivery_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
