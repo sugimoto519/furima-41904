@@ -117,6 +117,7 @@ GEM
     diff-lcs (1.6.2)
     domain_name (0.6.20240107)
     drb (2.2.1)
+    erb (5.0.1)
     erubi (1.13.1)
     factory_bot (6.5.1)
       activesupport (>= 6.1.0)
@@ -166,7 +167,7 @@ GEM
     json (2.12.0)
     kgio (2.11.4)
     language_server-protocol (3.17.0.5)
-    logger (1.7.0)
+    logger (1.6.6)
     loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -268,7 +269,8 @@ GEM
     rainbow (3.1.1)
     raindrops (0.20.1)
     rake (13.2.1)
-    rdoc (6.13.1)
+    rdoc (6.14.0)
+      erb
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
     reline (0.6.1)
@@ -364,7 +366,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.7.2)
+    zeitwerk (2.7.3)
 
 PLATFORMS
   aarch64-linux-gnu
@@ -391,7 +393,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
-  logger (= 1.7.0)
+  logger (= 1.6.6)
   mini_magick
   mysql2 (~> 0.5)
   nokogiri
