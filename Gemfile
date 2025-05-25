@@ -90,3 +90,4 @@ gem 'payjp'
 gem 'gon'
 gem "nokogiri", force_ruby_platform: true
 gem 'logger', '1.6.6'
+gem "aws-sdk-s3", require: false
