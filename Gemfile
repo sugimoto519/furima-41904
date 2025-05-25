@@ -73,7 +73,6 @@ group :production do
 end
 
 group :development, :test do
-  gem "mysql2", "~> 0.5"
   gem 'rspec-rails', '~> 4.0.0'
   gem 'pry'
   gem 'factory_bot_rails'
@@ -96,3 +95,4 @@ gem 'gon'
 gem "nokogiri", force_ruby_platform: true
 gem 'logger', '1.6.6'
 gem "aws-sdk-s3", require: false
+gem "mysql2", "~> 0.5"
